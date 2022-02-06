@@ -1,3 +1,13 @@
+## Laravel Simple CMS package
+Adds support for simple content management system into laravel.
+
+## Installation
+
+
+#### Seeders
+`php artisan db:seed --class="hanakivan\LaravelSimpleCms\database\seeders\Tables"`
+
+
 ## Requires
 - Laravel >= 8.0
 - php >= 8.0

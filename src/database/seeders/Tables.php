@@ -3,6 +3,7 @@
 namespace hanakivan\LaravelSimpleCms\database\seeders;
 
 use Carbon\Carbon;
+use Faker\Factory;
 use Faker\Provider\Text;
 use hanakivan\LaravelSimpleCms\Models\ArticleCategory;
 use Illuminate\Database\Seeder;
@@ -18,12 +19,17 @@ class Tables extends Seeder
      */
     public function run()
     {
-        DB::table('hanakivan_articles')->insert([
-            'slug' => Str::random(10),
-            'title' => Str::random(10),
-            'contents' => "",
-            "published_at" => Carbon::now(),
-            "modified_at" => Carbon::now(),
-        ]);
+        $faker = Factory::create();
+
+        for($i=1;$i<=50;$i++) {
+            $title = $faker->unique()->city();
+            DB::table('hanakivan_articles')->insert([
+                'slug' => str_replace(" ", "-", Str::lower($title)),
+                'title' => $title,
+                'contents' => $faker->text(),
+                "published_at" => Carbon::now(),
+                "modified_at" => Carbon::now(),
+            ]);
+        }
     }
 }
