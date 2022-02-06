@@ -1,10 +1,12 @@
 <?php
 
-namespace hanakivan\LaravelSimpleCms;
+namespace hanakivan\LaravelSimpleCms\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use hanakivan\LaravelSimpleCms\Models\Article;
+use hanakivan\LaravelSimpleCms\app\Models\Article;
 use Illuminate\Http\Request;
+use function config;
+use function view;
 
 class LaravelSimpleCMSController extends Controller
 {
@@ -21,7 +23,7 @@ class LaravelSimpleCMSController extends Controller
 
         $articles = Article::limit($limit)->offset($offset)->orderByDesc("published_at")->get();
 
-        return view("hanakivan::index", [
+        return view("hanakivan::web.index", [
             "articles" => $articles,
             "title" => "Domov",
             "pagination" => [
@@ -37,7 +39,7 @@ class LaravelSimpleCMSController extends Controller
     {
         $article = Article::where("slug", $slug)->firstOrFail();
 
-        return view("hanakivan::detail", [
+        return view("hanakivan::web.detail", [
             "title" => $article->title,
             "article" => $article,
         ]);

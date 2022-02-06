@@ -1,6 +1,6 @@
 <?php
 
-namespace hanakivan\LaravelSimpleCms\Models;
+namespace hanakivan\LaravelSimpleCms\app\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

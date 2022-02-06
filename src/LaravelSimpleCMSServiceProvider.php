@@ -23,8 +23,11 @@ class LaravelSimpleCMSServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadRoutesFrom(__DIR__.'/routes.php');
+        $this->loadRoutesFrom(__DIR__.'/routes/web.php');
+        $this->loadRoutesFrom(__DIR__.'/routes/auth.php');
+
         $this->loadViewsFrom(__DIR__.'/views', 'hanakivan');
+
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
 
         /*$this->publishes([

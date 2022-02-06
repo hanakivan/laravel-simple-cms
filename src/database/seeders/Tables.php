@@ -4,8 +4,6 @@ namespace hanakivan\LaravelSimpleCms\database\seeders;
 
 use Carbon\Carbon;
 use Faker\Factory;
-use Faker\Provider\Text;
-use hanakivan\LaravelSimpleCms\Models\ArticleCategory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
