@@ -26,10 +26,6 @@ class LaravelSimpleCMSAuthController extends Controller
                 "password" => $request->post("password"),
             ];
 
-            User::where("email", $credentials["email"])->update([
-                'password' => Hash::make($credentials["password"])
-            ]);
-
             if(Auth::attempt($credentials, true)) {
                 return redirect()->route("hanakivan.cms.auth.login");
             } else {
@@ -43,18 +39,28 @@ class LaravelSimpleCMSAuthController extends Controller
         }
     }
 
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->to("/");
+    }
+
     public function home()
     {
         return view("hanakivan::auth.home", [
             "title" => "Domov",
+            "active" => "home",
         ]);
     }
 
-    public function articles()
+    public function articles(Request $request)
     {
         return view("hanakivan::auth.articles", [
             "articles" => Article::orderByDesc("published_at")->get(),
             "title" => "Články",
+            "active" => "articles",
+            "isDeleted" => $request->has("deleted"),
         ]);
     }
 
@@ -66,6 +72,7 @@ class LaravelSimpleCMSAuthController extends Controller
             "article" => $article,
             "title" => "Vytvoriť článok",
             "isSaved" => false,
+            "active" => "articles",
         ]);
     }
 
@@ -76,7 +83,8 @@ class LaravelSimpleCMSAuthController extends Controller
         return view("hanakivan::auth.articles-form", [
             "article" => $article,
             "title" => "Upraviť článok",
-            "isSaved" => $request->has("saved")
+            "isSaved" => $request->has("saved"),
+            "active" => "articles",
         ]);
     }
 
@@ -105,6 +113,17 @@ class LaravelSimpleCMSAuthController extends Controller
         return redirect()->route("hanakivan.cms.auth.articles.edit", [
             "id" => $article->getKey(),
             "saved" => 1,
+        ]);
+    }
+
+    public function deleteArticle(Int $id, Request $request)
+    {
+        $article = Article::findOrFail($id);
+
+        $article->delete();
+
+        return redirect()->route("hanakivan.cms.auth.articles.list", [
+            "deleted" => 1,
         ]);
     }
 }

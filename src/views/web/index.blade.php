@@ -1,4 +1,4 @@
-@extends("hanakivan::layout")
+@extends("hanakivan::web.layout")
 
 @section("content")
     <section>

@@ -11,13 +11,34 @@
             body {
                 font-size: 13px;
             }
+
+            .nav-link {
+                color: white;
+                background-color: rgba(0,0,0,.1)
+            }
+
+            .nav-link:hover,
+            .nav-link.active {
+                color: white;
+                background-color: rgba(0,0,0,.4)
+            }
+
+            .nav .nav-item + .nav-item {
+                margin-top: 1px;
+            }
         </style>
 
         @stack("styles")
     </head>
     <body role="document" style="padding-top: 60px;">
-        <div style="height: 60px; position: fixed; left: 0; top:0; width: 100%; background-color: #444; z-index: 200;">
-
+        <div style="height: 60px; position: fixed; left: 0; top:0; width: 100%; background-color: #444; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding-right: 20px; padding-left: 20px;">
+            <div style="font-size: 24px; color: white;">
+                CMS
+            </div>
+            <form method="post" action="{{route("hanakivan.cms.auth.logout")}}">
+                <button type="submit" class="btn btn-outline-light btn-sm">Odhlásiť</button>
+                @csrf
+            </form>
         </div>
         <div style="display: flex; min-height: 100vh; padding-left: 250px">
             <div style="flex-shrink: 0; width: 250px; background-color: #444;position: fixed; top: 60px; bottom: 0; left:0;">
