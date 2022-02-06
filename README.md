@@ -16,7 +16,14 @@ composer require hanakivan/laravel-simple-cms
 ```
 \hanakivan\LaravelSimpleCms\LaravelSimpleCMSServiceProvider::class,
 ```
-3. That's it
+3. run `php artisan serve` and open `http://127.0.0.1:8000` in your browser
+4. That's it
+
+
+### Usage
+- to see the blog access `http://127.0.0.1:8000/blog`
+- to sign in use `http://127.0.0.1:8000/hanakivan/cms/login`
+- use `.env` to configure the options from the package's `config.php` file
 
 
 #### Seeders for dummy content
