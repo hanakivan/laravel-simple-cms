@@ -1,0 +1,17 @@
+{
+    "name": "hanakivan/laravel-simple-cms",
+    "autoload": {
+        "psr-4": {
+            "hanakivan\\LaravelSimpleCms\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ivan Hanák",
+            "email": "hanakivan@hanakivan.sk"
+        }
+    ],
+    "require": {
+        "php": ">=8.0"
+    }
+}
